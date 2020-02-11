@@ -10,7 +10,7 @@ public class PlayerSpawn : MonoBehaviour
     public GameObject player2;
 
     Vector2 player1SpawnPlace = new Vector2(-7, -3);
-    Vector2 player2SpawnPlace = new Vector2(7, -3);
+    Vector2 player2SpawnPlace = new Vector2(-4, -3);
     private int playerindex;
 
     // Start is called before the first frame update

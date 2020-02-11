@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    [SerializeField]
+    private int health = 100;
+
     // Get physics and sprite image
     GameManager myGameManager;
     public SpriteRenderer mySpriteRenderer;

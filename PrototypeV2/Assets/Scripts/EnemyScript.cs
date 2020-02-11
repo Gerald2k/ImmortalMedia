@@ -10,7 +10,6 @@ public class EnemyScript : MonoBehaviour
     public float speed = 2.0f;
     public float escapeSpeed = 4.0f;
     public int health = 30;
-    bool enemyDied = true;
 
     void Start()
     {
@@ -33,7 +32,6 @@ public class EnemyScript : MonoBehaviour
             health -= 10; 
             if (health < 1)
             {
-                enemyDied = true;
                 myRigidBody2D.velocity += Vector2.right * escapeSpeed;
                 Destroy(gameObject);
             }

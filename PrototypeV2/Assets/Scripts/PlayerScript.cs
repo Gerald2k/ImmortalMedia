@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField]
     private int health = 100;
+
+    [SerializeField]
+    private GameObject p1HealthText;
+
+    [SerializeField]
+    private GameObject p2HealthText;
 
     // Get physics and sprite image
     GameManager myGameManager;
@@ -42,7 +49,9 @@ public class PlayerScript : MonoBehaviour
 
         // Fetches enemy object so we can interact across scripts
         GameObject enemyObject = GameObject.Find("Enemy");
-        
+        Text p1HT = p1HealthText.GetComponent<Text>();
+        Text p2HT = p1HealthText.GetComponent<Text>();
+
 
         if (playerIndex == 1)
         {
@@ -58,6 +67,10 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        p1HT.text = "P1 Health: " + health;
+        p2HT.text = "P2 Health: " + health;
+
         if (player1Score < 200 && player2Score > 200)
         {
             // Player 2 win

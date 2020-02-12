@@ -143,6 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  p1HealthText: {fileID: 338853075897343320, guid: ef180c0c5f8f0454190a08114ca11a25,
+    type: 3}
+  p2HealthText: {fileID: 3950389431825904710, guid: 61b951abf02a5cf448ccb835143c0fd6,
+    type: 3}
   mySpriteRenderer: {fileID: 0}
   gun: {fileID: 8627136547098687607, guid: 700e3388ae8eca0488daf2f24c5b6096, type: 3}
   gunParent: {fileID: 546306513852454639}

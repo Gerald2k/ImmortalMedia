@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField]
-    private int health = 100;
+
+    private int p1health = 100;
+    private int p2health = 100;
 
     [SerializeField]
     private GameObject p1HealthText;
@@ -37,7 +38,9 @@ public class PlayerScript : MonoBehaviour
     {
         LEFT,
         RIGHT,
-        JUMP
+        JUMP,
+        BSCATK,
+        SPCATK
     }
     // Start is called before the first frame update
     void Start()
@@ -49,9 +52,6 @@ public class PlayerScript : MonoBehaviour
 
         // Fetches enemy object so we can interact across scripts
         GameObject enemyObject = GameObject.Find("Enemy");
-        Text p1HT = p1HealthText.GetComponent<Text>();
-        Text p2HT = p1HealthText.GetComponent<Text>();
-
 
         if (playerIndex == 1)
         {
@@ -67,10 +67,12 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Text p1HT = p1HealthText.GetComponent<Text>();
+        Text p2HT = p2HealthText.GetComponent<Text>();
+        p1HT.text = "P1 Health: " + p1health;
+        p2HT.text = "P2 Health: " + p2health;
 
-        p1HT.text = "P1 Health: " + health;
-        p2HT.text = "P2 Health: " + health;
-
+        #region Win scenario
         if (player1Score < 200 && player2Score > 200)
         {
             // Player 2 win
@@ -79,7 +81,9 @@ public class PlayerScript : MonoBehaviour
         {
             // Player 1 win
         }
+        #endregion
 
+        #region round mangement
         // beginning peace time
         if (beginTimer > 0.0f)
         {
@@ -103,7 +107,9 @@ public class PlayerScript : MonoBehaviour
 
             }
         }
+        #endregion
 
+        #region Player controls / Movement
         Vector2 playerVelocity = myRigidBody2D.velocity;
         
         // Player Input
@@ -115,14 +121,21 @@ public class PlayerScript : MonoBehaviour
         {
             playerVelocity += Vector2.left;
         }
-
-        if (Input.GetKeyDown(GetPlayerKey(CONTROLS.JUMP)) && !isPlayerJumping)
+        else if (Input.GetKeyDown(GetPlayerKey(CONTROLS.JUMP)) && !isPlayerJumping)
         {
             // Jump
             playerVelocity += (Vector2.up * 8.0f);
 
             // Set jump to true
             isPlayerJumping = true;
+        }
+        else if(Input.GetKeyDown(GetPlayerKey(CONTROLS.BSCATK)))
+        {
+            // Do basic attack
+        }
+        else if(Input.GetKeyDown(GetPlayerKey(CONTROLS.SPCATK)))
+        {
+            // Do special attack
         }
 
         // Clamp players velocity (player not too fast)
@@ -165,7 +178,7 @@ public class PlayerScript : MonoBehaviour
                     {
                         if (playerIndex == 1)
                         {
-                            return KeyCode.Space;
+                            return KeyCode.W;
                         }
                         if (playerIndex == 2)
                         {
@@ -177,6 +190,7 @@ public class PlayerScript : MonoBehaviour
             // Default return
             return KeyCode.RightWindows;
         }
+        #endregion
     }
 
     // Deal with collision between the player (as this is player script) and the tags of other objects
@@ -211,14 +225,20 @@ public class PlayerScript : MonoBehaviour
     {
         if (beginTimer > 0.0f)
         {
+            // timer for pre-round
             GUI.Label(new Rect(550, 0, 100, 20), beginTimer.ToString());
         }
         else
         {
+            // round timer
             GUI.Label(new Rect(550, 0, 100, 20), roundTimer.ToString());
         }
+
+        // Player scores
         GUI.Label(new Rect(40, 200, 100, 20), "P1: " + player1Score.ToString());
         GUI.Label(new Rect(1060, 200, 100, 20), "P2: " + player2Score.ToString());
+
+        // Player win message
         if (player1Score > 199)
         {
             GUI.Label(new Rect(550, 400, 200, 20), "PLAYER 1 WINS!");

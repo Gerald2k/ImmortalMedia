@@ -8,24 +8,22 @@ public class ShootScript : MonoBehaviour
     GameManager myGameManager;
     public GameObject parent;
     Vector2 whereToSpawn;
-    public int timeToWait = 1;
-    int amountSpawned = 0;
+    float bulletInterval = 0.5f;
     bool waiting = false;
     float bulletX;
     float bulletY;
 
-    IEnumerator Timer(int timeForTimer)
+    IEnumerator BulletTimer()
     {
-        int timeLeft;
-        timeLeft = timeForTimer;
+        // How many bullets to spawn over 1 second
+        int timeLeft = 1;
         while (timeLeft > 0)
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(bulletInterval);
             timeLeft--;
         }
         waiting = false;
     }
-
 
     void Start()
     {
@@ -45,11 +43,8 @@ public class ShootScript : MonoBehaviour
             // Actually spawn bullet
             Instantiate(bullet, whereToSpawn, Quaternion.identity, parent.transform);
 
-            //Increase amount spawned
-            amountSpawned++;
-
-            // Start timer 
-            StartCoroutine(Timer(timeToWait));
+            // Start timer - The 'timeToWait' variable makes no difference dont ask me why 
+            StartCoroutine(BulletTimer());
         }
     }
 }

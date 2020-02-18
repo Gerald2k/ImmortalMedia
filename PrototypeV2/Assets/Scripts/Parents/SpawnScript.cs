@@ -24,16 +24,17 @@ public class SpawnScript : MonoBehaviour
     List<GameObject> prefabList = new List<GameObject>();
 
     // Timer to deal with time between individual enemy spawns
-    IEnumerator Timer(int timeForTimer)
+    IEnumerator Timer(int timeToWait)
     {
-        int timeLeft;
-        timeLeft = timeForTimer;
-        while (timeLeft > 0)
+        //int timeLeft;
+        //timeLeft = timeForTimer;
+        while (timeToWait > 0)
         {
-            yield return new WaitForSeconds(0.3f);
-            timeLeft--;
+            yield return new WaitForSeconds(timeToWait);
+            timeToWait--;
         }
         waiting = false;
+        timeToWait = 2;
     }
 
     // Runs once at start
@@ -61,7 +62,7 @@ public class SpawnScript : MonoBehaviour
                     waiting = true;
 
                     // Set random location of enemy spawn
-                    randX = UnityEngine.Random.Range(12, 19);
+                    randX = UnityEngine.Random.Range(8, 15);
                     randY = UnityEngine.Random.Range(1, -2);
                     whereToSpawn = new Vector2(randX, randY);
 

@@ -2589,6 +2589,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 338853075897343322, guid: ef180c0c5f8f0454190a08114ca11a25,
+        type: 3}
+      propertyPath: m_Text
+      value: 'P1 Health: '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef180c0c5f8f0454190a08114ca11a25, type: 3}
 --- !u!1001 &3950389433161048210
@@ -2707,6 +2712,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950389431825904708, guid: 61b951abf02a5cf448ccb835143c0fd6,
+        type: 3}
+      propertyPath: m_Text
+      value: 'P2 Health: '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61b951abf02a5cf448ccb835143c0fd6, type: 3}

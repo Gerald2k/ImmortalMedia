@@ -7,6 +7,8 @@ public class ProjectileScript : MonoBehaviour
     Rigidbody2D myRigidbody2D;
     public float speed = 0.5f;
 
+
+
     private void Start()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
@@ -26,7 +28,8 @@ public class ProjectileScript : MonoBehaviour
             // Destroy self
             Destroy(gameObject);
 
-            Destroy(coll.gameObject);
+            //
+            //Destroy(coll.gameObject);
 
         }
         else if (coll.gameObject.tag == "Player")

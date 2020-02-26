@@ -7,6 +7,7 @@ public class EnemyScript : MonoBehaviour
     // Create physics variable
     Rigidbody2D myRigidBody2D;
     //changeable speed from unity
+    public PlayerScript playerScript;
     public float speed = 2.0f;
     public float escapeSpeed = 4.0f;
     public int health = 30;
@@ -58,6 +59,7 @@ public class EnemyScript : MonoBehaviour
             if (health < 1)
             {
                 Destroy(gameObject);
+                playerScript.GivePlayerScore();
             }
         }
     }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-
     public int p1Health = 100;
     private int p2Health = 100;
 
@@ -14,6 +13,12 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     private GameObject p2HealthText;
+
+    [SerializeField]
+    private GameObject p1ScoreText;
+
+    [SerializeField]
+    private GameObject p2ScoreText;
 
     // Get physics and sprite image
     GameManager myGameManager;
@@ -28,6 +33,8 @@ public class PlayerScript : MonoBehaviour
     public int playerIndex = 1;
     static int player1Score = 0;
     static int player2Score = 0;
+    static int p1health = 100;
+    static int p2health = 100;
     float beginTimer = 5.0f;
     static float roundTimer;
     Vector2 whereToSpawn;
@@ -71,6 +78,11 @@ public class PlayerScript : MonoBehaviour
         Text p2HT = p2HealthText.GetComponent<Text>();
         p1HT.text = "P1 Health: " + p1Health;
         p2HT.text = "P2 Health: " + p2Health;
+        Text p1ST = p1ScoreText.GetComponent<Text>();
+        Text p2ST = p2ScoreText.GetComponent<Text>();
+        p1ST.text = "P1 Score: " + player1Score;
+        p2ST.text = "P2 Score: " + player2Score;
+
 
         #region Win scenario
         if (player1Score < 200 && player2Score > 200)
@@ -209,13 +221,11 @@ public class PlayerScript : MonoBehaviour
         {
             if (playerIndex == 1)
             {
-                //EnemyScript enemyScript = enemyObject.GetComponent<EnemyScript>();
-                //if (enemyScript.health < 1)
-                player1Score += 20;
+                p1health -= 10;
             }
             else
             {
-                player2Score += 20;
+                p2health -= 10;
             }
         }
     }
@@ -246,6 +256,18 @@ public class PlayerScript : MonoBehaviour
         else if (player2Score > 199)
         {
             GUI.Label(new Rect(550, 400, 200, 20), "PLAYER 2 WINS!");
+        }
+    }
+
+    public void GivePlayerScore()
+    {
+        if (playerIndex == 1)
+        {
+            player1Score += 20;
+        }
+        else
+        {
+            player2Score += 20;
         }
     }
 }

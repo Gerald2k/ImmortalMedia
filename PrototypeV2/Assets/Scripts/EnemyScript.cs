@@ -6,11 +6,13 @@ public class EnemyScript : MonoBehaviour
 {
     // Create physics variable
     Rigidbody2D myRigidBody2D;
+    PlayerScript playerScript;
     //changeable speed from unity
     public float speed = 2.0f;
     public float escapeSpeed = 4.0f;
     public int health = 30;
     public int enemyRetreatTime = 1;
+    
 
     IEnumerator enemyRetreat(int timeForTimer)
     {
@@ -27,6 +29,7 @@ public class EnemyScript : MonoBehaviour
     {
         // get physics of enemy
         myRigidBody2D = GetComponent<Rigidbody2D>();
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
@@ -41,7 +44,7 @@ public class EnemyScript : MonoBehaviour
         if (coll.gameObject.tag == "Player")
         {
             // When the enemy collides with the player remove enemy health
-            health -= 10; 
+            playerScript.p1Health -= 10;
         }
         else if (coll.gameObject.tag == "Enemy")
         {

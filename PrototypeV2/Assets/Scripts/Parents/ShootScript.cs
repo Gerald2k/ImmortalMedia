@@ -6,6 +6,7 @@ public class ShootScript : MonoBehaviour
 {
     public GameObject bullet;
     GameManager myGameManager;
+
     public GameObject parent;
     Vector2 whereToSpawn;
     float bulletInterval = 0.5f;
@@ -13,6 +14,10 @@ public class ShootScript : MonoBehaviour
     float bulletX;
     float bulletY;
 
+    void Start()
+    {
+        myGameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
     IEnumerator BulletTimer()
     {
         // How many bullets to spawn over 1 second
@@ -23,11 +28,6 @@ public class ShootScript : MonoBehaviour
             timeLeft--;
         }
         waiting = false;
-    }
-
-    void Start()
-    {
-        myGameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame

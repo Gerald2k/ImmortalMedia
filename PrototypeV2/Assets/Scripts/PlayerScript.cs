@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour
 {
 
-    private int p1health = 100;
-    private int p2health = 100;
+    public int p1Health = 100;
+    private int p2Health = 100;
 
     [SerializeField]
     private GameObject p1HealthText;
@@ -69,8 +69,8 @@ public class PlayerScript : MonoBehaviour
     {
         Text p1HT = p1HealthText.GetComponent<Text>();
         Text p2HT = p2HealthText.GetComponent<Text>();
-        p1HT.text = "P1 Health: " + p1health;
-        p2HT.text = "P2 Health: " + p2health;
+        p1HT.text = "P1 Health: " + p1Health;
+        p2HT.text = "P2 Health: " + p2Health;
 
         #region Win scenario
         if (player1Score < 200 && player2Score > 200)

@@ -6,7 +6,6 @@ public class EnemyScript : MonoBehaviour
 {
     // Create physics variable
     Rigidbody2D myRigidBody2D;
-    PlayerScript playerScript;
     //changeable speed from unity
     public PlayerScript playerScript;
     public float speed = 2.0f;
